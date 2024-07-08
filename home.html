@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Management System</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-image: url('{{ url_for('static', filename='11111.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center vertically */
+            align-items: center;
+            color: #f0f0f0;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: -20px 0 10px; /* Adjust the margin to move text upward */
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+            color: #000; /* Set title color to black */
+            display: inline-block;
+            padding: 15px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            max-width: 80%;
+            text-align: center; /* Center the text */
+        }
+
+        a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #fff;
+            color: #1e90ff;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #1e90ff;
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        /* Additional style for positioning between center and right */
+        @media (min-width: 601px) {
+            a {
+                margin-left: auto;
+                margin-right: 20%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Parking Management System</h1>
+    <a href="{{ url_for('login') }}">Go to Login</a>
+</body>
+</html>
+

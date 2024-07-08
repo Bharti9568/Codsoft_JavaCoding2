@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Display</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #F8F9F9, #BDC3C7);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .ticket-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .ticket-id {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .ticket-details {
+            /* Add styling for ticket details as needed */
+        }
+
+        .go-to-parking-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .go-to-parking-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Style for ticket status */
+        .ticket-status-occupied {
+            color: green;
+        }
+
+        .ticket-status-vacant {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay">
+        <div class="ticket-container">
+            {% if ticket_details %}
+                <h2 class="ticket-id">{{ ticket_details.get('TicketID', 'N/A') }}</h2>
+                <h2>Ticket Details</h2>
+                <div class="ticket-details">
+                    <h2>Ticket Information</h2>
+                    <p>Name: <span id="ticketName">{{ ticket_details.get('name', 'N/A') }}</span></p>
+                    <p>Contact: <span id="ticketContact">{{ ticket_details.get('contact', 'N/A') }}</span></p>
+                    <p>Block: <span id="ticketBlock">{{ ticket_details.get('block', 'N/A') }}</span></p>
+                    <p>Vehicle Type: <span id="ticketVehicleType">{{ ticket_details.get('vehicle_type', 'N/A') }}</span></p>
+                    <p>License Plate: <span id="ticketLicensePlate">{{ ticket_details.get('license_plate', 'N/A') }}</span></p>
+                    <p>Parking Space: <span id="ticketParkingSpace">{{ ticket_details.get('parking_space', 'N/A') }}</span></p>
+                    <!-- Add additional fields as needed -->
+                    <p>Status: <span id="ticketStatus" class="{{ ticket_details.get('statusClass') }}"></span></p>
+                </div>
+                <!-- Update the form action to point to the ticket_display route -->
+                <form action="{{ url_for('ticket_display') }}" method="get">
+                    <button class="go-to-parking-button" onclick="goToParking()">Go to Parking Slots</button>
+                </form>
+            {% else %}
+                <p>No ticket details found.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        function goToParking() {
+            // Redirect to the parking slot page
+            window.location.href = "{{ url_for('parking_slots') }}";
+        }
+    </script>
+</body>
+
+</html>

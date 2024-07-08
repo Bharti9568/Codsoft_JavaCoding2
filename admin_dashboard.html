@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .circle-buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .circle-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 150px;
+            margin: 20px;
+            border-radius: 50%;
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .circle-button:hover {
+            background-color: #0056b3;
+        }
+
+        .logout-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 14px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Dashboard, Ayush</h1>
+
+    <div class="circle-buttons-container">
+        <div class="circle-button">
+            <a href="{{ url_for('worker_information') }}">Worker Information</a>
+        </div>
+
+        <div class="circle-button">
+            <a href="{{ url_for('parking_slots') }}">Parking Slots</a>
+        </div>
+
+        <div class="circle-button">
+            <a href="{{ url_for('customer_information') }}">Customer Information</a>
+        </div>
+    </div>
+
+    <p class="logout-link"><a href="{{ url_for('logout') }}">Logout</a></p>
+</body>
+</html>
